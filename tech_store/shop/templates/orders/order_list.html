@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Orders</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        .order-box { margin-bottom: 40px; }
+    </style>
+</head>
+<body>
+    <h1>Order List</h1>
+
+    {% for order in orders %}
+    <div class="order-box">
+        <h2>Order #{{ order.id }} by {{ order.customer.name }} ({{ order.customer.email }})</h2>
+        <p><strong>Order Date:</strong> {{ order.order_date }}</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in order.products.all %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>${{ product.price }}</td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="2">No products in this order.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% empty %}
+        <p>No orders found.</p>
+    {% endfor %}
+</body>
+</html>

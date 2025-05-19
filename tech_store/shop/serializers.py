@@ -13,8 +13,8 @@ class CustomerSerializer(serializers.ModelSerializer):
 
 class OrderSerializer(serializers.ModelSerializer):
     products = ProductSerializer(many=True)
-    customer_name = serializers.CharField(source='customer.name')
+    customer= CustomerSerializer()
 
     class Meta:
         model = Order
-        fields = ['id', 'customer_name', 'order_date', 'products']
+        fields = ['id', 'customer', 'order_date', 'products']
