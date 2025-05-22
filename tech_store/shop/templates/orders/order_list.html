@@ -16,7 +16,8 @@
         <h2>Order #{{ order.id }} by {{ order.customer.name }} ({{ order.customer.email }})</h2>
         <p><strong>Order Date:</strong> {{ order.order_date }}</p>
 
-        <!-- <table>
+        <!-- comment to visualize select_related better -->
+        <table>
             <thead>
                 <tr>
                     <th>Product Name</th>
@@ -33,7 +34,8 @@
                 <tr><td colspan="2">No products in this order.</td></tr>
                 {% endfor %}
             </tbody>
-        </table> -->
+        </table>
+        <!-- end comment -->
     </div>
     {% empty %}
         <p>No orders found.</p>

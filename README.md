@@ -8,3 +8,6 @@ This is a small demo django app that demonstrates how to use select_related and 
     - Now intially in our render template, we are iterating through all the orders and displaying the customer info as well as the order date.
     - But here occurs the classic N+1 queries problem. This is because even though we do just order.objects.all() - we assume it to be one query - internally to display customer info for each order, django does N more queries to get the customer info from the customer table using the customer id found in each order.
     - To solve this, all we need to do logically, is use one single query that joins to the customer table using the foreign key, ie - the customer id. And this is exactly what the select_related achieves.
+
+2. prefetch_related
+    - for many to many relations, it uses the ids of the first select * query and puts them in a where clause on the many-to-many join table to retrieve product info for all the orders in a single query. Total 2 queries, since first it gets the orders, and second query to get all the products for every order.

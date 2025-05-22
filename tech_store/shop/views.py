@@ -18,6 +18,6 @@ class OrderListView(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
         
 def order_list_view(request):
-    orders = Order.objects.all()
-    # orders = Order.objects.select_related('customer')
+    # orders = Order.objects.all()
+    orders = Order.objects.select_related('customer').prefetch_related('products')
     return render(request, 'orders/order_list.html', {'orders': orders})

@@ -19,8 +19,8 @@ class Product(models.Model):
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     order_date = models.DateField()
-    # products = models.ManyToManyField(Product)
-    products = "xyz"
+    products = models.ManyToManyField(Product)
+    # products = "xyz"
 
     def __str__(self):
         return f"Order #{self.id} by {self.customer.name}"
