@@ -19,4 +19,5 @@ class OrderListView(viewsets.ModelViewSet):
         
 def order_list_view(request):
     orders = Order.objects.all()
+    # orders = Order.objects.select_related('customer')
     return render(request, 'orders/order_list.html', {'orders': orders})
